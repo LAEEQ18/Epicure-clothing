@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 // import logo from './logo.svg';
 import './App.css';
 import HomePage from './Pages/Homepages/homepage.component';
+import ShopPage from './Pages/shop/shop.component.jsx';
 
 const HatsPage = () => (
 <div>
@@ -29,9 +30,9 @@ const TopicDetail = (props) => {
 
 function App() {
  return <div>
-   <Route exact path ='/' component ={HomePage} />
-   <Route exact path ='/hats' component ={HatsPage} />
-   <Route exact path ='/topics' component ={TopicList} />
+   <Route exact path = '/' component ={HomePage} />
+   <Route path = '/shop' component ={ShopPage} />
+   <Route  path ='/topics' component ={TopicList} />
    <Route  path ='/topics/:topicsid' component ={TopicDetail} />
     </div>
   

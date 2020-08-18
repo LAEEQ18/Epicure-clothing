@@ -1,6 +1,6 @@
 import CartActionTypes from './cart.types';
 import {addItemToCart , removeItemFromCart} from './cart.utils';
-import CartItem from '../../Components/cart-item/cart-item.component';
+//import CartItem from '../../Components/cart-item/cart-item.component';
 
 const INTIAL_STATE ={
     hidden: true,

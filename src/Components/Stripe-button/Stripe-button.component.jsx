@@ -17,8 +17,8 @@ const StripeCheckoutButton = ({price}) => {
             name= 'Crown Clothing Pvt'
             billingAddress 
             shippingAddress
-           image='https://sendeyo.com/up/d/f3eb2117da'
-          // image='crown.ico'
+           //image='https://sendeyo.com/up/d/f3eb2117da' we also use imageUrl for this
+             image='images/crown2.png'
             description={`Your Total is $${price}`}
             amount={priceForStripe}
             panelLabel='Pay Now'

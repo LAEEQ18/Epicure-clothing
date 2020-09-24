@@ -6,6 +6,7 @@ const INITIAL_STATE ={
           // imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
           imageUrl: 'images/hats.png', // local file in public/images/
           id: 1,
+
           linkUrl: 'shop/hats'
   
       },

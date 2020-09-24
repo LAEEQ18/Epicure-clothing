@@ -11,10 +11,11 @@ import Header from  './Components/header/header.component.jsx';
 import SignInandSignUp from './Pages/sign-in&sign-up/sign-in&sign-up.jsx';
 import CheckoutPage from './Pages/checkout/checkout';
 
-import {auth , createUserProfileDocument} from './firebase/firebase.utils';
+import {auth , createUserProfileDocument  } from './firebase/firebase.utils'; //addCollectionAndDocuments fro fire bases
 
 import {setCurrentUser} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selector';
+//import {selectCollectionsForPreivew} from './redux/shop/shop.selector';
 
 // const HatsPage = () => (
 // <div>
@@ -23,21 +24,21 @@ import {selectCurrentUser} from './redux/user/user.selector';
 
 // );
 
-const TopicDetail = (props) => {
-  console.log (props)
-  return(
-  <div>
-    <h1>Topic List Detail Page : {props.match.params.topicsid}</h1>
-  </div> );
+// const TopicDetail = (props) => {
+//   console.log (props)
+//   return(
+//   <div>
+//     <h1>Topic List Detail Page : {props.match.params.topicsid}</h1>
+//   </div> );
   
-};
+// };
 
-  const TopicList = () => (
-    <div>
-      <h1>Topics List</h1>
-    </div>
+//   const TopicList = () => (
+//     <div>
+//       <h1>Topics List</h1>
+//     </div>
     
-    );
+//     );
 
 class    App extends React.Component {
   // constructor() {  after redux we dont need the constructor any more
@@ -51,7 +52,7 @@ class    App extends React.Component {
 
   componentDidMount() {
 
-    const {setCurrentUser} =this.props;
+    const {setCurrentUser } =this.props; // we add collectionsArray here for firebase that we remove later
 
     this.unSubscribeFromAuth = auth.onAuthStateChanged ( async userAuth => {
 
@@ -69,17 +70,18 @@ class    App extends React.Component {
 
           });
 
-          console.log(this.state);
+          //console.log(this.state);
         });
         
 
       }
       else {setCurrentUser(userAuth);} //curent user to null
       // createUserProfileDocument(user); //for checking data of user in database firebase
-  
+            //for adding to firebase
+           //addCollectionAndDocuments('collections', collectionsArray.map(({title,items})=>({title,items})));
     // this.setState ({currentUser: user});
 
-    // console.log(user);
+     //console.log(user);
   } );
   }
 
@@ -102,8 +104,8 @@ class    App extends React.Component {
 
 
    <Route exact path ='/signin' render = {() => this.props.currentUser ? (<Redirect to = '/' />) : (<SignInandSignUp/>)} />
-   <Route  path ='/topics' component ={TopicList} />
-   <Route  path ='/topics/:topicsid' component ={TopicDetail} />
+   {/* <Route  path ='/topics' component ={TopicList} />
+   <Route  path ='/topics/:topicsid' component ={TopicDetail} /> */}
    </Switch>
     </div>  );
 
@@ -112,7 +114,8 @@ class    App extends React.Component {
     
 }
 const mapStateToProps = createStructuredSelector ({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  //collectionsArray: selectCollectionsForPreivew
 });
 
 const mapDispatchToProps=dispatch => ({

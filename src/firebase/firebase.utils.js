@@ -1,6 +1,7 @@
 import firebase from 'firebase/app' ;
 import 'firebase/firestore';
 import 'firebase/auth';
+//import { rejects } from 'assert';
 
 const config = {
 
@@ -38,7 +39,7 @@ const config = {
 
           try{
               await userRef.set({
-                  displayName,email,createdAt,...additionalData
+                  displayName,email,createdAt, ...additionalData
               })
 
           }catch (error) {
@@ -84,14 +85,25 @@ const config = {
          },{});
        };
 
+       export const getCurrentUser = () => {
+         return new Promise ((resolve, reject) => {
+           const unsubscribe = auth.onAuthStateChanged(userAuth => {
+             unsubscribe();
+             resolve(userAuth);
+           }, reject)
+         })
+       };
+
       //firebase.initializeApp(config);
       export const auth = firebase.auth();
       export const firestore = firebase.firestore();
 
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.setCustomParameters({prompt: 'select_account'});
+      export const googleProvider = new firebase.auth.GoogleAuthProvider();
+      googleProvider.setCustomParameters({prompt: 'select_account'});
 
-      export const signInWithGoogle = () => auth.signInWithPopup(provider);
+      export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+      //export const signInWithEmail = () => auth.signInWithEmailAndPassword( email);
+
 
       export default firebase;
 

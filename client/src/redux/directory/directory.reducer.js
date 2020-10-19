@@ -1,13 +1,18 @@
-const INITIAL_STATE ={
+//import { $CombinedState } from "redux";
+
+const INITIAL_STATE = {
 
     sections:[
         {
           title: 'hats',
-          // imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-          imageUrl: 'images/hats.png', // local file in public/images/
+          // imageUrl: 'https://i.ibb.co/cvpntL1/hats.png', // local file in public/images/
+
+          imageUrl: 'images/hats.png', 
           id: 1,
 
-          linkUrl: 'shop/hats'
+        linkUrl:`shop/hats`
+
+        
   
       },
       {
@@ -39,18 +44,20 @@ const INITIAL_STATE ={
           size: 'large',
           id: 5,
           linkUrl: 'shop/mens'
-      }            ]
-}
-
-
-
-
-
-const directoryReducer = (state = INITIAL_STATE ,action) => {
-    switch(action.type) {
-        default:
-            return state;
-    }
+      }    
+            ]
 };
 
-export default directoryReducer;
+
+
+
+
+const directoryReducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+      default:
+        return state;
+    }
+  };
+  
+  export default directoryReducer;
+  

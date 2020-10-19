@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
-import {auth} from '../../firebase/firebase.utils';
+//import {auth} from '../../firebase/firebase.utils';
 import {signOutStart} from '../../redux/user/user.actions';
 
 import {ReactComponent as Logo} from '../../assets/crown.svg';
@@ -11,7 +11,7 @@ import CartIcon from '../cart-icon/cart-icon.components';
 import CartDropdown from '../cart-dropdown/cart-dropdown';
 import {selectCurrentUser} from '../../redux/user/user.selector';
 import {selectCartHidden} from '../../redux/cart/cart.selectors';
- import {HeaderContainer , OptionsContainer , LogoContainer, OptionDiv,OptionLink} from './header.styled';
+ import {HeaderContainer , OptionsContainer , LogoContainer, OptionDiv,OptionLink} from './header.styled.jsx';
 
 //import './header.styles.scss';
 

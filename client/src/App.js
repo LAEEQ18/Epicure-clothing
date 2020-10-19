@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 // import logo from './logo.svg';
 
-import './App.css';
+//import './App.css';
+import { GlobalStyle } from './global.styles';
+
 import HomePage from './Pages/Homepages/homepage.component';
 import ShopPage from './Pages/shop/shop.component.jsx';
 import Header from  './Components/header/header.component.jsx';
@@ -93,12 +95,15 @@ const App = ({ checkUserSession, currentUser }) => {
  return (
   <div>
     {/* <Header currentUser={this.state.currentUser}/>  we make header empty after importing redux*/}
- <Header />
+ 
+<GlobalStyle/>
+
+ <Header/>
  <Switch>
  <Route exact path = '/' component ={HomePage} />
 
  
- <Route path = '/shop' component ={ShopPage} />
+ <Route path = '/shop' component = {ShopPage} />
  <Route exact path = '/checkout' component ={CheckoutPage} />
 
 

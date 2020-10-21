@@ -1,4 +1,4 @@
-import React , {useEffect}from 'react';
+import React , {useEffect , lazy ,Suspense}from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
@@ -7,11 +7,12 @@ import {createStructuredSelector} from 'reselect';
 //import './App.css';
 import { GlobalStyle } from './global.styles';
 
-import HomePage from './Pages/Homepages/homepage.component';
-import ShopPage from './Pages/shop/shop.component.jsx';
+//import HomePage from './Pages/Homepages/homepage.component';
+//import ShopPage from './Pages/shop/shop.component.jsx';
 import Header from  './Components/header/header.component.jsx';
-import SignInandSignUp from './Pages/sign-in&sign-up/sign-in&sign-up.jsx';
-import CheckoutPage from './Pages/checkout/checkout';
+import Spinner from './Components/spinner/spinner.component';
+//import SignInandSignUp from './Pages/sign-in&sign-up/sign-in&sign-up.jsx';
+//import CheckoutPage from './Pages/checkout/checkout';
 
 //import {auth , createUserProfileDocument  } from './firebase/firebase.utils'; //addCollectionAndDocuments fro fire bases
 
@@ -20,6 +21,12 @@ import {selectCurrentUser} from './redux/user/user.selector';
 import {checkUserSession} from './redux/user/user.actions';
 //import {selectCollectionsForPreivew} from './redux/shop/shop.selector';
 
+import ErrorBoundary from './Components/error-boundary/error-boundary.component.jsx';
+
+const HomePage = lazy (() => import ('./Pages/Homepages/homepage.component'));
+const ShopPage = lazy (() => import('./Pages/shop/shop.component.jsx'));
+const SignInandSignUp = lazy (() => import( './Pages/sign-in&sign-up/sign-in&sign-up.jsx'));
+const CheckoutPage = lazy (() => import ('./Pages/checkout/checkout'));
 // const HatsPage = () => (
 // <div>
 //   <h1>Hats Page</h1>
@@ -100,14 +107,20 @@ const App = ({ checkUserSession, currentUser }) => {
 
  <Header/>
  <Switch>
+   <ErrorBoundary>
+   <Suspense fallback= {<Spinner/>}>
  <Route exact path = '/' component ={HomePage} />
-
+   
  
  <Route path = '/shop' component = {ShopPage} />
  <Route exact path = '/checkout' component ={CheckoutPage} />
 
 
- <Route exact path ='/signin' render = {() => currentUser ? (<Redirect to = '/' />) : (<SignInandSignUp/>)} />
+ <Route exact path ='/signin'
+  render = {() =>
+   currentUser ? <Redirect to = '/' /> : <SignInandSignUp/>} />
+ </Suspense>
+   </ErrorBoundary>
  {/* <Route  path ='/topics' component ={TopicList} />
  <Route  path ='/topics/:topicsid' component ={TopicDetail} /> */}
  </Switch>

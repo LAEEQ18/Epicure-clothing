@@ -68,7 +68,7 @@ import {
 
                     <ButtonsBarContainer>
                         
-        <CustomButton type = 'submit'   > SIGN IN </CustomButton>
+        <CustomButton type = 'submit'   > {'' }SIGN IN </CustomButton>
 
                     <CustomButton type = 'button' onClick = {googleSignInStart} isGoogleSignIn > {''} SIGN IN With Google {''} </CustomButton>
 

@@ -3,8 +3,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const enforce = require('express-sslify');
-const { dirname } = require('path');
+//const { dirname } = require('path');
 //const { error } = require('console');
+const enforce = require('express-sslify');
 const compression = require('compression');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
@@ -26,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
 
     app.get('*' , function(req, res){
         res.sendFile(path.join(__dirname , 'client/build', 'index.html'))
-    } )
+    } );
 }
 
 app.listen(port, error => {

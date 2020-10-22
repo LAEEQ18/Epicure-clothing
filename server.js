@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
-const enforce = require('express-sslify';)
+const enforce = require('express-sslify');
 const { dirname } = require('path');
 //const { error } = require('console');
 const compression = require('compression');
@@ -14,12 +14,13 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const port = process.env.PORT || 5000;
 //app.use(enforce.HTTPS({ trustProtoHeader: true }));
-app.use(compression());
+//app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
+    app.use(compression())
     app.use(enforce.HTTPS({ trustProtoHeader: true })); // for security
     app.use(express.static(path.join(__dirname, 'client/build')));
 
